@@ -37,7 +37,7 @@ body {
   }
 }
 
-#menuBar {
+#menuBar div {
   display: table;
   width: 100%;
   background-color: black;

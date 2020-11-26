@@ -9,20 +9,17 @@ class LogIn extends React.Component {
             password: '',
             message: ''
         };
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChangeUsername(event) {
+    onChangeUsername = (event) => {
         this.setState({username: event.target.value});
     }
     
-    onChangePassword(event) {
+    onChangePassword = (event) => {
         this.setState({password: event.target.value});
     }
 
-    onSubmit(event) {
+    onSubmit = (event) => {
         event.preventDefault();
 
         if (!this.state.username || !this.state.password) {

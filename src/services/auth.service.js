@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 class AuthService {
     login(username, password) {
@@ -31,6 +31,7 @@ class AuthService {
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'))
     }
+
 
 }
 

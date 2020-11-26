@@ -1,7 +1,8 @@
-import axios from 'sxios';
+import axios from 'axios';
+import AuthService from './auth.service.js'
 
 function authHeader() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user =  AuthService.getCurrentUser();
 
     if (user && user.accessToken) {
         return { 'x-access-token': user.accessToken};
