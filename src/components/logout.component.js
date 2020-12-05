@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthService from '../services/auth.service.js';
-
+import Button from '@material-ui/core/Button';
 
 class Logout extends React.Component {
     constructor(props) {
@@ -10,23 +10,26 @@ class Logout extends React.Component {
         }
     }
 
+    componentWillMount() {
+        if (!AuthService.isLogined()) {
+            this.props.history.push("/");
+            window.location.reload();
+        }
+    }
+
     onSubmit = (event) => {
         event.preventDefault();
-
-        AuthService.logout()
+            
+        AuthService.logout();
         this.props.history.push("/");
         window.location.reload();
     }
 
     render() {
-
-
         return (
-            <div>
-                <div> Login: { this.state.user.username } </div>
-                <form onSubmit={this.onSubmit}>
-                    <input type="submit" value="Log off"/>
-                </form>
+            <div> <br/>
+                <div> You logged in as { this.state.user.username } </div> <br/>
+                <Button variant='contained' onClick={this.onSubmit}>Log off</Button>
             </div>
         )
     }

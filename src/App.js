@@ -1,17 +1,13 @@
 import React from 'react';
 import './App.css';
-import { Route, NavLink, HashRouter } from "react-router-dom";
+import { Route, NavLink, HashRouter, Switch } from 'react-router-dom';
 import CreateLink from './components/create.component.js'
 import Link from './components/link.component.js'
 import Routes from './routes.js'
-import RepresentationService from './services/representation.service.js'
-
-
-
+import ShowService from './services/show.service.js'
 
 class App extends React.Component {
-  
-  constructor(props) {
+    constructor(props) {
     super(props);
     this.state = {
         id: ''
@@ -23,9 +19,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    RepresentationService.showNavbar()
+    ShowService.showNavbar()
 }
-
 
   render() {
     return (
@@ -43,14 +38,15 @@ class App extends React.Component {
                 <NavLink to='/statistics' className='menuOption'> statistics </NavLink>
                 <NavLink to='/logout' className='menuOption'> logout </NavLink>
               </div>
-
             </div>
           </header>
           <body>
             <div id='body'>
-            <Route path='/create' render={(props) => <CreateLink {...props} onCreateLink={this.handleId}/>}/>
-            <Route path='/l' render={(props) => <Link {...props} id={this.state.id}/>}/>
-            {Routes}
+              <Switch>
+                <Route path='/create' render={(props) => <CreateLink {...props} onCreateLink={this.handleId}/>}/>
+                <Route path='/l' render={(props) => <Link {...props} id={this.state.id}/>}/>
+                {Routes}
+              </Switch>
             </div>
           </body>
         </div>

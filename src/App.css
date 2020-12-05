@@ -1,5 +1,6 @@
 body {
   background-color: #282c34;
+  color: white
 }
 
 .App {
@@ -49,7 +50,8 @@ body {
   font-size: 70%;
   text-decoration: none;
   color: white;
-
+  padding: 10px 10px;
+  width: 33%
 }
 
 .menuOption:active {
@@ -64,3 +66,61 @@ form {
 .active {
   background-color: #0099FF;
 }
+
+#fourZeroFour {
+  font-size: 200px;
+  color: white;
+  font-weight: bold;
+}
+
+#notFound {
+  font-size: 40px;
+  color: red;
+  font-weight: bold
+}
+
+.tag:hover {
+  color: #0099FF
+}
+
+.tableRow:hover {
+  background-color: #0099FF;
+}
+
+.tableHeader {
+  background-color: gray;
+}
+
+.text {
+  font-weight: bold
+}
+
+.errorText {
+  color: #8B0000
+}
+
+.form {
+  background-color: gray;
+  width: 300px;
+  position: fixed;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.formCreate {
+  background-color: gray;
+  width: 60%;
+  position: fixed;
+  left: 20%;
+}
+
+.showLink {
+  background-color: white;
+}
+
+#fildToCopy {
+  width: 60%;
+  height: 32px
+}
+
+

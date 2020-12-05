@@ -1,6 +1,6 @@
 import AuthService from './auth.service.js'
 
-class RepresentationService {
+class ShowService {
     showNavbar() {
         const state = AuthService.getCurrentUser() ? 'preAuth' : 'postAuth';
 
@@ -9,4 +9,4 @@ class RepresentationService {
     }
 }
 
-export default new RepresentationService();
+export default new ShowService();

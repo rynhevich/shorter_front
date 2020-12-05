@@ -17,7 +17,7 @@ class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('user')
+            localStorage.removeItem('user')
     }
 
     regester(username, password) {
@@ -32,7 +32,9 @@ class AuthService {
         return JSON.parse(localStorage.getItem('user'))
     }
 
-
+    isLogined() {
+        return this.getCurrentUser() ? true : false
+    }
 }
 
 export default new AuthService();

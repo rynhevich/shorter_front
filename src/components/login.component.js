@@ -1,5 +1,7 @@
 import React from 'react';
 import AuthService from '../services/auth.service.js';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -9,6 +11,13 @@ class LogIn extends React.Component {
             password: '',
             message: ''
         };
+    }
+
+    componentWillMount() {
+        if (AuthService.isLogined()) {
+            this.props.history.push('/create');
+            window.location.reload();
+        }
     }
 
     onChangeUsername = (event) => {
@@ -27,7 +36,7 @@ class LogIn extends React.Component {
         } else {
             AuthService.login(this.state.username, this.state.password)
             .then(() => {
-                this.props.history.push("/statistics");
+                this.props.history.push('/create');
                 window.location.reload();
             })
             .catch(error => { 
@@ -40,14 +49,15 @@ class LogIn extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    Login: <br/>
-                    <input type="text" name="username" value={this.state.username} onChange={this.onChangeUsername}/> <br/>
-                    Password: <br/>
-                    <input type="password" name="password" value={this.state.password} onChange={this.onChangePassword}/> <br/>
-                    <input type="submit" value="Log in"/>
+                <br/>
+                <form className='form' noValidate autoComplete='off'>
+                    <div> <br/>
+                    <TextField required label='Login' name='username' onChange={this.onChangeUsername}/><br/>
+                    <TextField required label='Password' type='password' autoComplete='current-password' value={this.state.password} onChange={this.onChangePassword}/><br/><br/>
+                    <Button variant='contained' onClick={this.onSubmit}>Log in</Button> <br/><br/>
+                    <div className='errorText'> {this.state.message} </div> <br/>
+                    </div>
                 </form>
-                <div> {this.state.message} </div>
             </div>
         )
     }

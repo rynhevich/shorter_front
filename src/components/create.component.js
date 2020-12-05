@@ -1,5 +1,9 @@
 import React from 'react';
 import LinkService from '../services/link.service.js';
+import AuthService from '../services/auth.service.js';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 
 class CreateLink extends React.Component {
@@ -11,6 +15,13 @@ class CreateLink extends React.Component {
             tags: '',
             message: ''
         };
+    }
+
+    componentWillMount() {
+        if (!AuthService.isLogined()) {
+            this.props.history.push("/");
+            window.location.reload();
+        }
     }
 
     onChangeLink = (event) => {
@@ -43,26 +54,24 @@ class CreateLink extends React.Component {
                 this.setState({message: error.response.data.message});
             })
         }
-
-
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
-                    Link to shorten: <br/>
-                    <input type='text' name='link' value={this.state.link} onChange={this.onChangeLink}/>
-                    <input type='submit' value='Shorten'/> <br/>
-                    Add description: <br/>
-                    <textarea name='description' value={this.state.description} onChange={this.onChangeDescription}/> <br/>
-                    Add tags: <br/>
-                    <textarea name='tags' value={this.state.tags} onChange={this.onChangeTags}/>
+                <br/>
+                <form className='formCreate' noValidate autoComplete='off'>
+                    <div> <br/>
+                    <TextField required label='Link to shorten' fullWidth name='link' value={this.state.link} onChange={this.onChangeLink}/><br/>
+                    <TextField label='Add description' fullWidth multiline rowsMax={4} name='description' value={this.state.description} onChange={this.onChangeDescription}/><br/>
+                    <TextField label='Add tags' fullWidth multiline rowsMax={4} name='tags' value={this.state.tags} onChange={this.onChangeTags}/><br/><br/>
+                    <Button variant='contained' onClick={this.onSubmit}>Shorten</Button> <br/><br/>
+                    <div className='errorText'> {this.state.message} </div> <br/>
+                    </div>
                 </form>
-                <div> {this.state.message} </div>
             </div>
         )
-    }
+      }
 }
 
 export default CreateLink
